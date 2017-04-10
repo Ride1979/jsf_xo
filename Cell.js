@@ -10,8 +10,9 @@ constructor(props) {
 
 
 render() {
+    let xo = this.props.el;
     return (
-          <div>{this.props.el}</div>
+          <div className="cell">{xo}</div>
     );
 }
 

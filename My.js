@@ -8,71 +8,74 @@ class MyXO extends React.Component {
 constructor(props) {
     super(props);
     this.state = {
-        xo: "X",
+        isStop: false,
+        xo: true,
         matrix: [[0, 0, 0],
                  [0, 0, 0],
                  [0, 0, 0]]
         }
 }
 
-clickCell() {
-    if (this.state.xo == "X") 
-    {
-        this.setState({xo: "0"});
+clickCell(e, x, y) {
+    let copyMatrix = this.state.matrix;
+    if (!this.state.isStop) {
+        if (this.state.matrix[x][y] == 0) {
+            if (this.state.xo) 
+            {
+                this.setState({xo: false});
+                e.target.style.backgroundColor = "green";
+                copyMatrix[x][y] = 1;
+            }
+            else {
+                this.setState({xo: true});
+                e.target.style.backgroundColor = "red";
+                copyMatrix[x][y] = -1;
+            }
+            this.setState({matrix: copyMatrix});
+        }
     }
-    else {
-        this.setState({xo: "X"});
-    }
-/*    let str = "";
-    for(let row = 0; row < this.state.matrix.length; row++) {
-	    for(let col = 0; col < this.state.matrix[row].length; col++) {
-            console.log(row + ' ' + col);
-		    console.log(this.state.matrix[row][col] + '  ');
-	}
-	console.log('\n');
-    }*/
+    if (Math.abs(copyMatrix[0][0]+copyMatrix[0][1]+copyMatrix[0][2]) == 3 ||
+        Math.abs(copyMatrix[1][0]+copyMatrix[1][1]+copyMatrix[1][2]) == 3 ||
+        Math.abs(copyMatrix[2][0]+copyMatrix[2][1]+copyMatrix[2][2]) == 3 ||
+        Math.abs(copyMatrix[0][0]+copyMatrix[1][0]+copyMatrix[2][0]) == 3 ||
+        Math.abs(copyMatrix[0][1]+copyMatrix[1][1]+copyMatrix[2][1]) == 3 ||
+        Math.abs(copyMatrix[0][2]+copyMatrix[1][2]+copyMatrix[2][2]) == 3 ||
+        Math.abs(copyMatrix[0][0]+copyMatrix[1][1]+copyMatrix[2][2]) == 3 ||
+        Math.abs(copyMatrix[0][2]+copyMatrix[1][1]+copyMatrix[2][0]) == 3)
+        {
+            this.setState({isStop: true});
+        }
+    console.log(Math.abs(this.state.matrix[0][0] + this.state.matrix[0][1] + this.state.matrix[0][2]));
+    ////////
+    console.log(this.state.matrix[x][y]);
+     console.log(this.state.isStop);
     console.log(this.state.matrix[0]);
     console.log(this.state.matrix[1]);
     console.log(this.state.matrix[2]);
 }
 
 render() {
-    let strRender = " ";
-    strRender = "<div className=\"square\"><div className=\"column\">";
-    for(let row = 0; row < this.state.matrix.length; row++) {
-        strRender = strRender + "<div className=\"cell\">";
-	    for(let col = 0; col < this.state.matrix[row].length; col++) {
-		    strRender = strRender + "<div className=\"cell\">2</div>";
-	    }
-        strRender = strRender + "</div>";
-    }
-    strRender = strRender + "</div></div>";
-
-    let str = (
+    return (
           <div className="square">
                 <div className="column">
                     <div className="cell">
-                        <div className="cell" onClick={this.clickCell.bind(this)}><Cell el = {this.state.xo}/></div>
-                        <div className="cell">2</div>
-                        <div className="cell">3</div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "0")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "1")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "2")}><Cell el = {this.state.xo}/></div>
                     </div>
                     <div className="cell">
-                        <div className="cell">4</div>
-                        <div className="cell">5</div>
-                        <div className="cell">6</div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "0")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "1")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "2")}><Cell el = {this.state.xo}/></div>
                     </div>
                     <div className="cell">
-                        <div className="cell">7</div>
-                        <div className="cell">8</div>
-                        <div className="cell">9</div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "0")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "1")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "2")}><Cell el = {this.state.xo}/></div>
                     </div>
                 </div>
           </div>
     );
-
-    
-   // console.log(strRender);
-    return str;
     
 }
 
