@@ -10,10 +10,13 @@ constructor(props) {
 
 
 render() {
-    let xo = this.props.el;
-    return (
-          <div className="cell">{xo}</div>
-    );
+    if (this.props.el == 1) {
+        return (<div className="cell" className="d24"></div>);
+    } else if (this.props.el == -1) {
+        return (<div className="cell" className="ring"></div>);
+    } else {
+        return (<div className="cell"></div>);
+    }
 }
 
 }

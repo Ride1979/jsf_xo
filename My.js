@@ -23,12 +23,12 @@ clickCell(e, x, y) {
             if (this.state.xo) 
             {
                 this.setState({xo: false});
-                e.target.style.backgroundColor = "green";
+          //      e.target.style.backgroundColor = "green";
                 copyMatrix[x][y] = 1;
             }
             else {
                 this.setState({xo: true});
-                e.target.style.backgroundColor = "red";
+          //      e.target.style.backgroundColor = "red";
                 copyMatrix[x][y] = -1;
             }
             this.setState({matrix: copyMatrix});
@@ -48,7 +48,7 @@ clickCell(e, x, y) {
     console.log(Math.abs(this.state.matrix[0][0] + this.state.matrix[0][1] + this.state.matrix[0][2]));
     ////////
     console.log(this.state.matrix[x][y]);
-     console.log(this.state.isStop);
+    console.log(this.state.isStop);
     console.log(this.state.matrix[0]);
     console.log(this.state.matrix[1]);
     console.log(this.state.matrix[2]);
@@ -59,19 +59,19 @@ render() {
           <div className="square">
                 <div className="column">
                     <div className="cell">
-                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "0")}><Cell el = {this.state.xo}/></div>
-                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "1")}><Cell el = {this.state.xo}/></div>
-                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "2")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "0")}><Cell el = {this.state.matrix[0][0]}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "1")}><Cell el = {this.state.matrix[0][1]}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "0", "2")}><Cell el = {this.state.matrix[0][2]}/></div>
                     </div>
                     <div className="cell">
-                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "0")}><Cell el = {this.state.xo}/></div>
-                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "1")}><Cell el = {this.state.xo}/></div>
-                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "2")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "0")}><Cell el = {this.state.matrix[1][0]}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "1")}><Cell el = {this.state.matrix[1][1]}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "1", "2")}><Cell el = {this.state.matrix[1][2]}/></div>
                     </div>
                     <div className="cell">
-                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "0")}><Cell el = {this.state.xo}/></div>
-                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "1")}><Cell el = {this.state.xo}/></div>
-                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "2")}><Cell el = {this.state.xo}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "0")}><Cell el = {this.state.matrix[2][0]}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "1")}><Cell el = {this.state.matrix[2][1]}/></div>
+                        <div className="cell" onClick={(e) => this.clickCell(e, "2", "2")}><Cell el = {this.state.matrix[2][2]}/></div>
                     </div>
                 </div>
           </div>
