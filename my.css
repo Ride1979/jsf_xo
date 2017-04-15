@@ -67,3 +67,9 @@
     position: absolute;
     transform: rotate(-90deg)
     }
+
+.cell2 {
+  margin: auto;
+  vertical-align: middle;
+  position: relative;
+  }
